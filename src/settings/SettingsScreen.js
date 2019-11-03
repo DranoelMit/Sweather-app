@@ -148,8 +148,8 @@ const styles = StyleSheet.create({
   },
   item: {
     backgroundColor: '#f9c2ff',
-    padding: 20,
-    marginHorizontal: 50,
+    padding: 5,
+    marginVertical: 5,
     borderColor: '#000000',
     borderWidth: 1
   },
