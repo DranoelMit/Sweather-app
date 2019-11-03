@@ -242,7 +242,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => {
   return {
     contacts: state.settings,
-  }
+  };
 }
 
 const mapDispatchToProps = dispatch => {

@@ -1,8 +1,8 @@
 const initState = {
     alt: -1,
     region: {
-      latitude: 82.50,
-      longitude: 135.00,
+      longitude: -73.7562,
+      latitude: 42.256,
       latitudeDelta: 0.0922,
       longitudeDelta: 0.0421,
   }
