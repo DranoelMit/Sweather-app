@@ -45,6 +45,15 @@ class SettingsScreen extends React.Component{
   AddToArray() {
     let selectedButton = this.state.radioButtons.find(e => e.selected == true);
     selectedButton = selectedButton ? selectedButton.value : this.state.radioButtons[0].label;
+    if(this.state.first == ''){
+      alert('Please Enter First Name')
+    }else if(this.state.last == ''){
+      alert('Please Enter Last Name')
+    }else if(selectedButton == 'Phone Number' && this.state.number == ''){
+      alert('Please Enter a Phone Number')
+    }else if(selectedButton == 'Email' && this.state.email == ''){
+      alert('Please Enter an Email Address')
+    }else{
     this.ModalVisible.bind(this);
     let newdata = [...this.state.data];
     if(selectedButton == 'Phone Number'){
@@ -55,6 +64,7 @@ class SettingsScreen extends React.Component{
     this.setState({modalVisible:false});
     this.setState({data:newdata,first:"",last:"",number:"",email:""});
   }
+}
 
   RenderContact(item){
     if(typeof item.email === 'undefined'){
