@@ -73,12 +73,12 @@ class SettingsScreen extends React.Component {
   RenderContact(item) {
     if (typeof item.email === 'undefined') {
       return (<View><Text style={styles.item}>{`${item.first} ${item.last} ${item.number}`}</Text>
-        <TouchableOpacity onPress={this.DeletePerson.bind(this, item)} style={styles.button}>
+        <TouchableOpacity onPress={this.DeletePerson.bind(this, item)} style={styles.buttonDelete}>
           <Text style={styles.touchableopacity}>Delete Person</Text>
         </TouchableOpacity></View>);
     } else {
       return (<View><Text style={styles.item}>{`${item.first} ${item.last} ${item.email}`}</Text>
-        <TouchableOpacity onPress={this.DeletePerson.bind(this, item)} style={styles.button}>
+        <TouchableOpacity onPress={this.DeletePerson.bind(this, item)} style={styles.buttonDelete}>
           <Text style={styles.touchableopacity}>Delete Person</Text>
         </TouchableOpacity></View>);
     }
@@ -91,6 +91,7 @@ class SettingsScreen extends React.Component {
     if (selectedButton == 'Phone Number') {
       return (
         <View style={styles.content}>
+          <Text style={styles.title}>Contact List</Text>
           <Modal transparent={false} visible={this.state.modalVisible}>
             <View>
               <RadioGroup radioButtons={this.state.radioButtons} onPress={this.onPress} />
@@ -115,7 +116,7 @@ class SettingsScreen extends React.Component {
                 keyboardType='numeric'
               />
 
-              <TouchableOpacity onPress={this.AddToArray.bind(this)} style={styles.button}>
+              <TouchableOpacity onPress={this.AddToArray.bind(this)} style={styles.button, styles.modalbutton}>
                 <Text style={styles.touchableopacity}>Add Person</Text>
               </TouchableOpacity>
             </View>
@@ -135,6 +136,7 @@ class SettingsScreen extends React.Component {
     } else {
       return (
         <View style={styles.content}>
+          <Text style={styles.title}>Contact List</Text>
           <Modal transparent={false} visible={this.state.modalVisible}>
             <View>
               <RadioGroup radioButtons={this.state.radioButtons} onPress={this.onPress} />
@@ -166,7 +168,7 @@ class SettingsScreen extends React.Component {
             extraData={this.state.data}
             style={styles.list}
           />
-          <TouchableOpacity onPress={this.ModalVisible.bind(this)} style={styles.button}>
+          <TouchableOpacity onPress={this.ModalVisible.bind(this)} style={styles.button, styles.modalbutton}>
             <Text style={styles.touchableopacity}>Add Person</Text>
           </TouchableOpacity>
         </View>
@@ -175,28 +177,38 @@ class SettingsScreen extends React.Component {
   }
 }
 const styles = StyleSheet.create({
+  title:{
+    fontSize: 40,
+    textAlign: 'center',
+    flex: .25,
+    top: '5%',
+    marginBottom: 40
+  },
   content: {
+    flex: 1,
     height: "100%",
     width: "100%"
   },
   list: {
     alignContent: "flex-start",
-    width: "100%"
-  },
-  item: {
-    backgroundColor: '#f9c2ff',
-    padding: 5,
-    marginVertical: 5,
-    borderColor: '#000000',
-    borderWidth: 1
-  },
-  button: {
-    position: "relative",
-    bottom: 0,
     width: "100%",
   },
+  item: {
+    backgroundColor: '#ffffff',
+    padding: 5,
+    marginVertical: 5,
+  },
+  button: {
+    position: 'relative',
+    bottom: 0,
+    width: "100%",
+    justifyContent: 'center'
+  },
+  modalbutton:{
+    marginTop: 425
+  },
   touchableopacity: {
-    backgroundColor: "#0000ff",
+    backgroundColor: "#3410bb",
     textAlign: 'center',
     textAlignVertical: 'center',
     fontWeight: "bold",
@@ -213,9 +225,16 @@ const styles = StyleSheet.create({
   },
   textInput: {
     height: 50,
-    borderColor: "#000000",
+    borderColor: "#808080",
     borderWidth: 1,
-    width: "50%"
+    width: "50%",
+    color: "#707070",
+  },
+  buttonDelete:{
+    backgroundColor: "#3410bb",
+    width: "25%",
+    left:'75%',
+    borderWidth: 1,
   }
 
 });
