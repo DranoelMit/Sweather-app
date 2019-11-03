@@ -67,7 +67,7 @@ class SettingsScreen extends React.Component {
       }
       this.setState({ modalVisible: false });
       this.setState({ data: newdata, first: "", last: "", number: "", email: "" });
-      this.props.changeContacts({contacts: newdata, author: this.state.yourName});
+      this.props.changeContacts({contacts: newdata, author: this.state.yourname});
     }
   }
 
@@ -262,9 +262,10 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
+  console.log(state);
   return {
     contacts: state.settings.contacts,
-    author: state.settings.authors
+    author: state.settings.author
   };
 }
 
