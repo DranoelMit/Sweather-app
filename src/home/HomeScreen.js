@@ -17,7 +17,6 @@ const sendMessage = () => {
 }
 
 const HomeScreen = (props) => {
-  console.log('called Home');
   return (
     <View style={{flex: 1}}>
       <TouchableOpacity
@@ -27,7 +26,9 @@ const HomeScreen = (props) => {
         <Image source={settingsIcon} style={styles.settingsImg} />
       </TouchableOpacity>
       <Text style={styles.title}> Sweather</Text>
-      <SweatherMap />
+      <SweatherMap 
+        flex={.6}
+      />
       <View style={styles.bottom}>
         <TouchableOpacity 
           style={[styles.bottomButton, {backgroundColor: '#3410bb'}]}
@@ -52,7 +53,6 @@ const styles = StyleSheet.create({
     fontSize: 40,
     textAlign: 'center',
     flex: .25,
-    marginTop: 20
   },
   settingsButton: {
 
