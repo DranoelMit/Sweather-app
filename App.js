@@ -1,9 +1,12 @@
 import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import {  createStackNavigator } from 'react-navigation-stack';
-import HomeScreen from './src/home/HomeScreen'
-import SettingsScreen from './src/settings/SettingsScreen.js'
-import InfoScreen from './src/info/InfoScreen'
+import HomeScreen from './src/home/HomeScreen';
+import SettingsScreen from './src/settings/SettingsScreen.js';
+import InfoScreen from './src/info/InfoScreen';
+import { Provider } from 'react-redux';
+import configureStore from './src/store/store';
+
 
 const AppNavigator = createStackNavigator(
   {
@@ -22,10 +25,17 @@ const AppNavigator = createStackNavigator(
     navigationOptions: {
       headerVisible: false,
     },
-    initialRouteName: 'Settings'
-  }
-);
+    initialRouteName: 'Home'
+  });
 
 const AppContainer = createAppContainer(AppNavigator);
 
-export default AppContainer;
+const App = () => { 
+  return(
+    <Provider store={configureStore()} >
+      <AppContainer />
+    </Provider>
+  );
+}
+
+export default App;
