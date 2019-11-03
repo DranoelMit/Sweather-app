@@ -1,3 +1,8 @@
+const InfoScreen = () => {
+  return (
+    <View></View>
+  );
+}
 import React from 'react';
 import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native';
 import SweatherMap from './SweatherMap';
