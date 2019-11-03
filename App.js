@@ -21,10 +21,8 @@ const AppNavigator = createStackNavigator(
     headerMode: 'none',
     navigationOptions: {
       headerVisible: false,
-    }
-  },
-  {
-    initialRouteName: 'Home'
+    },
+    initialRouteName: 'Settings'
   }
 );
 
