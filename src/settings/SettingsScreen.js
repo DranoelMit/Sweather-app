@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, Button, FlatList, Text, Modal, TextInput} from 'react-native';
+import {StyleSheet, View, Button, FlatList, Text, Modal, TextInput, TouchableOpacity} from 'react-native';
 import RadioGroup from 'react-native-radio-buttons-group';
 class SettingsScreen extends React.Component{
   constructor(props){
@@ -34,6 +34,14 @@ class SettingsScreen extends React.Component{
       this.setState({modalVisible:true});
     }
   }
+
+  DeletePerson(item){
+    let newdata = [...this.state.data];
+    let index = this.state.data.indexOf(item);
+    newdata.splice(index, 1);
+    this.setState({data:newdata});
+  }
+  
   AddToArray() {
     let selectedButton = this.state.radioButtons.find(e => e.selected == true);
     selectedButton = selectedButton ? selectedButton.value : this.state.radioButtons[0].label;
@@ -50,9 +58,15 @@ class SettingsScreen extends React.Component{
 
   RenderContact(item){
     if(typeof item.email === 'undefined'){
-      return (<Text style={styles.item}>{`${item.first} ${item.last} ${item.number}`}</Text>);
+      return (<View><Text style={styles.item}>{`${item.first} ${item.last} ${item.number}`}</Text>
+      <TouchableOpacity onPress ={this.DeletePerson.bind(this,item)} style = {styles.button}>
+        <Text style = {styles.touchableopacity}>Delete Person</Text>
+      </TouchableOpacity></View>);
     }else{
-      return (<Text style={styles.item}>{`${item.first} ${item.last} ${item.email}`}</Text>);
+      return (<View><Text style={styles.item}>{`${item.first} ${item.last} ${item.email}`}</Text>
+      <TouchableOpacity onPress ={this.DeletePerson.bind(this,item)} style = {styles.button}>
+        <Text style = {styles.touchableopacity}>Delete Person</Text>
+      </TouchableOpacity></View>);
     }
   }
   onPress = radioButtons => this.setState({radioButtons});
@@ -86,7 +100,9 @@ class SettingsScreen extends React.Component{
                      keyboardType = 'numeric'
                      />
               
-             <Button title = "Add Person" onPress ={this.AddToArray.bind(this)} style = {styles.button} />
+              <TouchableOpacity onPress ={this.AddToArray.bind(this)} style = {styles.button}>
+                <Text style = {styles.touchableopacity}>Add Person</Text>
+              </TouchableOpacity>
           </View>
         </Modal>
 
@@ -96,7 +112,9 @@ class SettingsScreen extends React.Component{
           extraData = {this.state.data}
           style={styles.list}
         />
-        <Button title = "Add Person" onPress ={this.ModalVisible.bind(this)} style = {styles.button} />
+        <TouchableOpacity onPress ={this.ModalVisible.bind(this)} style = {styles.button}>
+            <Text style = {styles.touchableopacity}>Add Person</Text>
+        </TouchableOpacity>
       </View>
       );
     }else{
@@ -121,7 +139,9 @@ class SettingsScreen extends React.Component{
                        value={this.state.email}
                        />
                 
-               <Button title = "Add Person" onPress ={this.AddToArray.bind(this)} style = {styles.button} />
+                <TouchableOpacity onPress ={this.AddToArray.bind(this)} style = {styles.button}>
+            <Text style = {styles.touchableopacity}>Add Person</Text>
+          </TouchableOpacity>
             </View>
           </Modal>
   
@@ -131,7 +151,9 @@ class SettingsScreen extends React.Component{
             extraData = {this.state.data}
             style={styles.list}
           />
-          <Button title = "Add Person" onPress ={this.ModalVisible.bind(this)} style = {styles.button} />
+          <TouchableOpacity onPress ={this.ModalVisible.bind(this)} style = {styles.button}>
+            <Text style = {styles.touchableopacity}>Add Person</Text>
+          </TouchableOpacity>
         </View>
         );
     }
@@ -156,7 +178,18 @@ const styles = StyleSheet.create({
   button:{
     position:"relative",
     bottom:0,
-    width:"100%"
+    width:"100%",
+  },
+  touchableopacity:{
+    backgroundColor: "#0000ff",
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    fontWeight: "bold" ,
+    textTransform: "uppercase",
+    color: "white",
+    fontSize: 20,
+    height: 50
+    
   },
   modal:{
     height: "100%",
