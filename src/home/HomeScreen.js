@@ -21,9 +21,10 @@ class HomeScreen extends React.Component {
         long: this.props.map.region.longitude,
         lat: this.props.map.region.latitude,
         numToFind: 1,
-        anticipWaterLevel: 20
+        anticipWaterLevel: 20,
+        threshDiv: 30
       }
-    }).then(res => console.log(res.data[0]))
+    }).then(res => console.log(res.data))
       .catch(error => console.log(error));
       //changeInfo
 
