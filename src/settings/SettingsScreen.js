@@ -9,7 +9,7 @@ class SettingsScreen extends React.Component {
     super(props);
     this.state = {
       data: this.props.contacts,
-      yourname: "",
+      yourname: this.props.author,
       first: "",
       last: "",
       number: "",
@@ -67,7 +67,7 @@ class SettingsScreen extends React.Component {
       }
       this.setState({ modalVisible: false });
       this.setState({ data: newdata, first: "", last: "", number: "", email: "" });
-      this.props.changeContacts(newdata);
+      this.props.changeContacts({contacts: newdata, author: this.state.yourName});
     }
   }
 
@@ -262,14 +262,15 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    contacts: state.settings,
+    contacts: state.settings.contacts,
+    author: state.settings.authors
   };
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    changeContacts: (contacts) => {
-      dispatch(changeContacts(contacts));
+    changeContacts: (settings) => {
+      dispatch(changeContacts(settings));
     }
   }
 }

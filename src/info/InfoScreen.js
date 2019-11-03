@@ -14,7 +14,11 @@ class InfoScreen extends React.Component {
       <View style={{flex: 1}}>
         <SweatherMap 
           flex={.4}
-          //marker={lat: this.props.safeLocation.latitude, long: this.props.safeLocation.longitude}
+          marker={{
+                latitude: this.props.safeLocation.latitude, 
+                longitude: this.props.safeLocation.longitude,
+                title: 'Reccomended safe location',
+                subtitle: 'Consider relocating'}}
         />
         <View style={styles.statsContainer}>
           <Text style={styles.stat}>{`Flood Risk Value: ${this.props.risk}`}</Text>

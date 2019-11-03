@@ -1,6 +1,6 @@
-export const changeContacts = (contacts) => {
+export const changeContacts = (settings) => {
   return {
     type: 'CHANGE_CONTACTS',
-    contacts
+    settings
   }
 }

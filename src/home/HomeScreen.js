@@ -4,7 +4,7 @@ import SweatherMap from './SweatherMap';
 import settingsIcon from '../../assets/settingsIcon.png';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import changeInfo from '../actions/infoActions'
+import { changeInfo } from '../actions/infoActions'
 
 class HomeScreen extends React.Component {
   constructor(props){
@@ -22,13 +22,18 @@ class HomeScreen extends React.Component {
         lat: this.props.map.region.latitude,
         numToFind: 1,
         anticipWaterLevel: 20,
-        threshDiv: 30
+        threshDiv: 20
       }
-    }).then(res => console.log(res.data))
+    }).then(res => this.props.changeInfo({
+        risk: res.data[0][0][3],
+        safeLocation: {
+          latitude: res.data[0][0][0][1],
+          longitude: res.data[0][0][0][0]
+        }}))
       .catch(error => console.log(error));
-      //changeInfo
 
-    if(this.props.info.risk > 5){
+
+    if(this.props.info.risk >= 5){
       this.setState({sendDisabled: false});
     }
 
@@ -43,7 +48,7 @@ class HomeScreen extends React.Component {
     {
       contacts: contacts,
       info: info,
-      author: 'TODO'
+      author: this.props.author
     });
     this.setState({sendDisabled: true});
   }  
@@ -61,7 +66,7 @@ class HomeScreen extends React.Component {
         <SweatherMap 
           flex={.6}
         />
-        <Text>{(this.props.info.risk >= 0) ? `Risk: ${this.props.info.risk}` : ''}</Text>
+        <Text style={styles.risk}>{(this.props.info.risk >= 0) ? `Risk: ${this.props.info.risk}/5` : ''}</Text>
         <View style={styles.bottom}>
           <TouchableOpacity 
             style={[styles.bottomButton, {backgroundColor: '#3410bb'}]}
@@ -86,7 +91,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 40,
     textAlign: 'center',
-    flex: .25,
+
   },
   settingsButton: {
 
@@ -108,12 +113,18 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 25
     
+  }, 
+  risk: {
+    flex: .1,
+    fontSize: 20,
+    height: '10%'
   }
 });
 
 const mapStateToProps = state => {
   return {
-      contacts: state.settings,
+      contacts: state.settings.contacts,
+      author: state.settings.author,
       info: state.info,
       map: state.map
   };

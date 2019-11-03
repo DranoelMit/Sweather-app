@@ -10,7 +10,8 @@ class SweatherMap extends React.Component {
     this.state = {
       region: null,
       altitude: -1, 
-      ready: false
+      ready: false,
+      marker: this.props.marker
     }
   }
 
@@ -52,17 +53,33 @@ class SweatherMap extends React.Component {
   }
 
   render(){
+    if (typeof this.state.marker !== 'undefined'){
     return (
-      <View style={styles.container}>
-        <MapView
+      <MapView style={styles.container}
           style={this.mapStyle()}
           region={this.state.region}
           onRegionChangeComplete={this.onRegionChange.bind(this)}
           showsUserLocation={true}
           followsUserLocation={true}
-        />
-      </View>
+      >
+      <MapView.Marker 
+          coordinate={{latitude: this.props.marker.latitude, longitude: this.props.marker.longitude}}
+          title={this.props.marker.title}
+          description={this.props.marker.subtitle}
+      />
+      </MapView>
     );
+    }
+    else return (      
+      <MapView 
+      style={styles.container}
+      style={this.mapStyle()}
+      region={this.state.region}
+      onRegionChangeComplete={this.onRegionChange.bind(this)}
+      showsUserLocation={true}
+      followsUserLocation={true}
+     />
+     );
   }
 }
 

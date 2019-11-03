@@ -1,10 +1,13 @@
+const initState = {
+  contacts: [],
+  author:   ""
+}
 
-
-const reducer = (state=[], action) => {
+const reducer = (state=initState, action) => {
   switch(action.type){
     case 'CHANGE_CONTACTS':
-      const {contacts} = action;
-      return contacts;
+      const settings = action;
+      return settings;
     default:
         return state;
   }

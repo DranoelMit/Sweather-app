@@ -1,8 +1,8 @@
 const initState = {
   risk: -1,
   safeLocation: {
-    latitude: 82.00,
-    longitude: 135.00
+    latitude: 42.6526,
+    longitude: -73.7562
   }
 };
 
