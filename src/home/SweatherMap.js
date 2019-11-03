@@ -31,7 +31,6 @@ class SweatherMap extends React.Component {
   componentWillMount(){
     navigator.geolocation.getCurrentPosition(
       position => {
-        console.log('User Position', position)
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
         const altitude = position.coords.altitude;
@@ -47,13 +46,12 @@ class SweatherMap extends React.Component {
 
   mapStyle(){
     if(this.state.ready){
-      return {flex: .6, opacity: 1}
+      return {flex: this.props.flex, opacity: 1}
     }
-    else return {flex: .6, opacity: 0}
+    else return {flex: this.props.flex, opacity: 0}
   }
 
   render(){
-    console.log('called SweatherMap');
     return (
       <View style={styles.container}>
         <MapView
