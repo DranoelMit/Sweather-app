@@ -23,7 +23,7 @@ class HomeScreen extends React.Component {
         numToFind: 1,
         anticipWaterLevel: 20
       }
-    }).then(res => console.log(res.data))
+    }).then(res => console.log(res.data[0]))
       .catch(error => console.log(error));
       //changeInfo
 
