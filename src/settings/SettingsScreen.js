@@ -9,6 +9,7 @@ class SettingsScreen extends React.Component {
     super(props);
     this.state = {
       data: this.props.contacts,
+      yourname: "",
       first: "",
       last: "",
       number: "",
@@ -72,7 +73,7 @@ class SettingsScreen extends React.Component {
 
   RenderContact(item) {
     if (typeof item.email === 'undefined') {
-      return (<View><Text style={styles.item}>{`${item.first} ${item.last} ${item.number}`}</Text>
+      return (<View><Text style={styles.item}>{`${item.first} ${item.last}                            ${item.number}`}</Text>
         <TouchableOpacity onPress={this.DeletePerson.bind(this, item)} style={styles.buttonDelete}>
           <Text style={styles.touchableopacity}>Delete Person</Text>
         </TouchableOpacity></View>);
@@ -92,9 +93,14 @@ class SettingsScreen extends React.Component {
       return (
         <View style={styles.content}>
           <Text style={styles.title}>Contact List</Text>
+          <Text style = {styles.yourName}>Your Name:</Text>
+          <TextInput style={styles.yourName2} placeholder="Your Name"
+                onChangeText={(typedText) => { this.setState({ yourname: typedText }) }}
+                value={this.state.yourname}
+              />
           <Modal transparent={false} visible={this.state.modalVisible}>
             <View>
-              <RadioGroup radioButtons={this.state.radioButtons} onPress={this.onPress} />
+              <RadioGroup radioButtons={this.state.radioButtons} onPress={this.onPress} flexDirection='row' />
               <Text>First Name:</Text>
               <TextInput style={styles.textInput} placeholder="First Name"
                 onChangeText={(typedText) => { this.setState({ first: typedText }) }}
@@ -137,9 +143,14 @@ class SettingsScreen extends React.Component {
       return (
         <View style={styles.content}>
           <Text style={styles.title}>Contact List</Text>
+          <Text style = {styles.yourName}>Your Name:</Text>
+          <TextInput style={styles.yourName2} placeholder="Your Name"
+                onChangeText={(typedText) => { this.setState({ yourname: typedText }) }}
+                value={this.state.yourname}
+              />
           <Modal transparent={false} visible={this.state.modalVisible}>
             <View>
-              <RadioGroup radioButtons={this.state.radioButtons} onPress={this.onPress} />
+              <RadioGroup radioButtons={this.state.radioButtons} onPress={this.onPress} flexDirection='row' />
               <Text>First Name:</Text>
               <TextInput style={styles.textInput} placeholder="First Name"
                 onChangeText={(typedText) => { this.setState({ first: typedText }) }}
@@ -156,7 +167,7 @@ class SettingsScreen extends React.Component {
                 value={this.state.email}
               />
 
-              <TouchableOpacity onPress={this.AddToArray.bind(this)} style={styles.button}>
+              <TouchableOpacity onPress={this.AddToArray.bind(this)} style={styles.button, styles.modalbutton}>
                 <Text style={styles.touchableopacity}>Add Person</Text>
               </TouchableOpacity>
             </View>
@@ -178,11 +189,21 @@ class SettingsScreen extends React.Component {
 }
 const styles = StyleSheet.create({
   title:{
+    top: "5%",
     fontSize: 40,
     textAlign: 'center',
-    flex: .25,
-    top: '5%',
-    marginBottom: 40
+  },
+  yourName:{
+    top:"7.5%",
+    
+  },
+  yourName2:{
+    marginTop: 60,
+    height: 50,
+    borderColor: "#808080",
+    borderWidth: 1,
+    width: "50%",
+    color: "#707070",
   },
   content: {
     flex: 1,
@@ -190,7 +211,7 @@ const styles = StyleSheet.create({
     width: "100%"
   },
   list: {
-    alignContent: "flex-start",
+    maxHeight:"80%",
     width: "100%",
   },
   item: {
@@ -205,7 +226,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   modalbutton:{
-    marginTop: 425
+    marginTop: 460
   },
   touchableopacity: {
     backgroundColor: "#3410bb",
@@ -231,7 +252,7 @@ const styles = StyleSheet.create({
     color: "#707070",
   },
   buttonDelete:{
-    backgroundColor: "#3410bb",
+    backgroundColor: "#345342",
     width: "25%",
     left:'75%',
     borderWidth: 1,
