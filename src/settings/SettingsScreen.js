@@ -211,8 +211,9 @@ const styles = StyleSheet.create({
     width: "100%"
   },
   list: {
-    maxHeight:"80%",
+    maxHeight:"75%",
     width: "100%",
+    
   },
   item: {
     backgroundColor: '#ffffff',
